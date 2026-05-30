@@ -14,8 +14,6 @@
   --yellow: #FFD84D;
   --green: #2DC98A;
   --green-light: #D6F7EC;
-  --pink: #FF6B9D;
-  --pink-light: #FFE8F2;
   --border: #E2DDD6;
   --muted: #6B6560;
 }
@@ -30,7 +28,6 @@ body {
   line-height: 1.6;
 }
 
-/* NAV */
 nav {
   background: var(--purple);
   padding: 0 40px;
@@ -63,19 +60,11 @@ nav {
   transition: background 0.15s, color 0.15s;
 }
 
-.nav-links a:hover {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-}
+.nav-links a:hover { background: rgba(255,255,255,0.15); color: #fff; }
 
-.nav-links a.cta {
-  background: var(--yellow);
-  color: var(--ink);
-}
-
+.nav-links a.cta { background: var(--yellow); color: var(--ink); }
 .nav-links a.cta:hover { background: #FFC800; }
 
-/* HERO */
 .hero {
   background: var(--purple);
   padding: 80px 40px 72px;
@@ -150,7 +139,6 @@ nav {
 
 .hero-cta:hover { background: #FFC800; transform: translateY(-2px); }
 
-/* STATS */
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -181,18 +169,13 @@ nav {
   color: var(--muted);
 }
 
-/* SECTION BASE */
 section {
   padding: 72px 40px;
   max-width: 900px;
   margin: 0 auto;
 }
 
-section.full-bleed {
-  max-width: none;
-  padding-left: 0;
-  padding-right: 0;
-}
+section.full-bleed { max-width: none; padding-left: 0; padding-right: 0; }
 
 .section-label {
   font-size: 0.75rem;
@@ -217,7 +200,6 @@ section.full-bleed {
   line-height: 1.75;
 }
 
-/* ABOUT */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -232,14 +214,6 @@ section.full-bleed {
   padding: 28px 28px 24px;
 }
 
-.about-card-icon {
-  width: 48px; height: 48px;
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-}
-
 .about-card h3 {
   font-family: 'Archivo Black', sans-serif;
   font-size: 1.15rem;
@@ -252,16 +226,12 @@ section.full-bleed {
   line-height: 1.65;
 }
 
-/* ALPHABET */
 .alpha-wrap {
   background: var(--purple-light);
   padding: 72px 40px;
 }
 
-.alpha-inner {
-  max-width: 900px;
-  margin: 0 auto;
-}
+.alpha-inner { max-width: 900px; margin: 0 auto; }
 
 .alpha-grid {
   display: grid;
@@ -280,10 +250,7 @@ section.full-bleed {
   cursor: default;
 }
 
-.alpha-cell:hover {
-  border-color: var(--purple);
-  transform: translateY(-2px);
-}
+.alpha-cell:hover { border-color: var(--purple); transform: translateY(-2px); }
 
 .alpha-eng {
   font-size: 0.7rem;
@@ -301,76 +268,6 @@ section.full-bleed {
   line-height: 1;
 }
 
-/* WORD OF DAY */
-.word-wrap {
-  background: var(--green-light);
-  border-top: 3px solid var(--green);
-  border-bottom: 3px solid var(--green);
-  padding: 72px 40px;
-}
-
-.word-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.word-card {
-  background: #fff;
-  border: 2px solid var(--border);
-  border-radius: 20px;
-  padding: 36px;
-  text-align: center;
-}
-
-.word-tag {
-  font-size: 0.7rem;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 16px;
-}
-
-.word-english {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 2.5rem;
-  line-height: 1;
-  margin-bottom: 12px;
-  color: var(--ink);
-}
-
-.word-zest {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--purple);
-  word-break: break-all;
-  margin-bottom: 28px;
-  min-height: 2rem;
-}
-
-.btn-refresh {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--green);
-  color: #fff;
-  border: none;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 900;
-  font-size: 0.9rem;
-  padding: 12px 24px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.15s, transform 0.15s;
-}
-
-.btn-refresh:hover { background: #25B07A; transform: translateY(-1px); }
-
-/* HOW TO */
 .howto-steps {
   display: flex;
   flex-direction: column;
@@ -391,13 +288,12 @@ section.full-bleed {
 .step-num {
   font-family: 'Archivo Black', sans-serif;
   font-size: 2rem;
-  color: var(--purple-light);
+  color: var(--purple);
+  opacity: 0.3;
   line-height: 1;
   flex-shrink: 0;
   width: 48px;
   text-align: center;
-  color: var(--purple);
-  opacity: 0.3;
 }
 
 .step-content h3 {
@@ -423,7 +319,6 @@ section.full-bleed {
   font-weight: 700;
 }
 
-/* FOOTER */
 footer {
   background: var(--ink);
   color: rgba(255,255,255,0.7);
@@ -438,34 +333,26 @@ footer {
   margin-bottom: 12px;
 }
 
-.footer-zest {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 6px;
-}
-
-.footer-credit {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.3);
-}
+.footer-zest { font-size: 0.9rem; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+.footer-credit { font-size: 0.85rem; color: rgba(255,255,255,0.3); }
 
 @media (max-width: 700px) {
-  .about-grid, .word-inner { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr; }
   .stat { border-right: none; border-bottom: 3px solid var(--border); }
   .stat:last-child { border-bottom: none; }
   nav { padding: 0 20px; }
-  .hero, section, .alpha-wrap, .word-wrap { padding-left: 20px; padding-right: 20px; }
+  .hero, section, .alpha-wrap { padding-left: 20px; padding-right: 20px; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="#">Zestfestian</a>
+  <a class="nav-logo" href="/">Zestfestian</a>
   <div class="nav-links">
-    <a href="#">Home</a>
-    <a href="translator.html" class="cta">Translator →</a>
+    <a href="/">Home</a>
+    <a href="/translator/" class="cta">Translator →</a>
   </div>
 </nav>
 
@@ -474,9 +361,8 @@ footer {
   <h1>Zestfestian</h1>
   <p class="hero-sub">made up language go brr</p>
   <div class="hero-zest">S''leT't'eleT't'lilaE' FlaE'SlulaSle</div>
-  <a class="hero-cta" href="translator/">Try the Translator →</a>
+  <a class="hero-cta" href="/translator/">Try the Translator →</a>
 </div>
-
 
 
 <section>
@@ -484,7 +370,6 @@ footer {
   <p class="section-body">Zestfestian is a constructed language created by 3 kids from South-East England. Every English letter maps to a Zestfestian letter. Learn the alphabet and you can write anything.... as long as you can remember it all lol</p>
   <div class="about-grid">
     <div class="about-card">
-      
       <h3>made for typing</h3>
       <p>We built the language to not be spoken, that doesnt mean you cant try, although you'll look like a right twit while trying to</p>
     </div>
@@ -503,8 +388,6 @@ footer {
   </div>
 </div>
 
-
-
 <section>
   <h2 class="section-title">Three things to know</h2>
   <div class="howto-steps">
@@ -519,7 +402,7 @@ footer {
       <div class="step-num">2</div>
       <div class="step-content">
         <h3>Consonants shift to new letters</h3>
-        <p>Each consonant maps to a new character. For example, B → <code>Z</code>, S → <code>T'</code>, or N → <code>E'</code>. Apostrophes are a proper part of the alphabet. In fact, all of the consonants put together become "Zest Fest" and the reason the apostophies are there is because there was not enough letters for just zest fest so we had to improvise :)</p>
+        <p>Each consonant maps to a new character. For example, B → <code>Z</code>, S → <code>T'</code>, or N → <code>E'</code>. Apostrophes are a proper part of the alphabet. In fact, all of the consonants put together become "Zest Fest" and the reason the apostrophes are there is because there was not enough letters for just zest fest so we had to improvise :)</p>
       </div>
     </div>
     <div class="step">
@@ -541,7 +424,6 @@ footer {
 <script>
 const consonantMap = {"B":"Z","C":"z","D":"E","F":"e","G":"S","H":"s","J":"T","K":"t","L":"F","M":"f","N":"E'","P":"e'","Q":"S'","R":"s'","S":"T'","T":"t'","V":"Z'","W":"z'","X":"E''","Y":"e''","Z":"S''"};
 const vowels = {"A":"la","E":"le","I":"li","O":"lo","U":"lu"};
-
 const fullAlpha = [{eng:"A",zest:"la"},{eng:"B",zest:"Z"},{eng:"C",zest:"z"},{eng:"D",zest:"E"},{eng:"E",zest:"le"},{eng:"F",zest:"e"},{eng:"G",zest:"S"},{eng:"H",zest:"s"},{eng:"I",zest:"li"},{eng:"J",zest:"T"},{eng:"K",zest:"t"},{eng:"L",zest:"F"},{eng:"M",zest:"f"},{eng:"N",zest:"E'"},{eng:"O",zest:"lo"},{eng:"P",zest:"e'"},{eng:"Q",zest:"S'"},{eng:"R",zest:"s'"},{eng:"S",zest:"T'"},{eng:"T",zest:"t'"},{eng:"U",zest:"lu"},{eng:"V",zest:"Z'"},{eng:"W",zest:"z'"},{eng:"X",zest:"E''"},{eng:"Y",zest:"e''"},{eng:"Z",zest:"S''"}];
 
 const grid = document.getElementById('alphaGrid');
@@ -551,8 +433,6 @@ fullAlpha.forEach(({eng,zest}) => {
   c.innerHTML = `<div class="alpha-eng">${eng}</div><div class="alpha-zest">${zest}</div>`;
   grid.appendChild(c);
 });
-
-
 </script>
 </body>
 </html>

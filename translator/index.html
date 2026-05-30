@@ -58,7 +58,6 @@ nav {
 
 .nav-links a:hover { background: rgba(255,255,255,0.15); color: #fff; }
 
-/* PAGE HEADER */
 .page-header {
   background: var(--purple);
   padding: 48px 40px 56px;
@@ -80,7 +79,6 @@ nav {
   line-height: 1;
 }
 
-/* DIRECTION TABS */
 .dir-tabs {
   display: flex;
   border-bottom: 3px solid var(--border);
@@ -103,16 +101,10 @@ nav {
   text-align: left;
 }
 
-.dir-tab.active {
-  color: var(--purple);
-  border-bottom-color: var(--purple);
-}
-
+.dir-tab.active { color: var(--purple); border-bottom-color: var(--purple); }
 .dir-tab:hover:not(.active) { color: var(--ink); }
-
 .dir-sep { width: 1px; background: var(--border); }
 
-/* TRANSLATOR MAIN */
 .translator-main {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -127,10 +119,7 @@ nav {
   gap: 16px;
 }
 
-.pane-right {
-  background: var(--purple-light);
-  border-left: 3px solid var(--border);
-}
+.pane-right { background: var(--purple-light); border-left: 3px solid var(--border); }
 
 .pane-label {
   font-size: 0.75rem;
@@ -180,12 +169,7 @@ textarea::placeholder { color: #C5C0BA; font-weight: 400; }
 
 .output-placeholder { color: #C5C0BA; font-weight: 400; }
 
-.pane-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
-}
+.pane-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 
 .btn-primary {
   background: var(--purple);
@@ -218,12 +202,7 @@ textarea::placeholder { color: #C5C0BA; font-weight: 400; }
 
 .btn-secondary:hover { border-color: var(--muted); color: var(--ink); }
 
-.char-hint {
-  font-size: 0.8rem;
-  color: #C5C0BA;
-  font-weight: 600;
-  margin-left: auto;
-}
+.char-hint { font-size: 0.8rem; color: #C5C0BA; font-weight: 600; margin-left: auto; }
 
 .btn-copy {
   background: transparent;
@@ -241,12 +220,7 @@ textarea::placeholder { color: #C5C0BA; font-weight: 400; }
 .btn-copy:hover { background: var(--purple); color: #fff; }
 .btn-copy.copied { background: var(--green); border-color: var(--green); color: #fff; }
 
-/* REFERENCE */
-.reference {
-  border-top: 3px solid var(--border);
-  padding: 36px 40px;
-  background: #fff;
-}
+.reference { border-top: 3px solid var(--border); padding: 36px 40px; background: #fff; }
 
 .ref-label {
   font-size: 0.75rem;
@@ -257,11 +231,7 @@ textarea::placeholder { color: #C5C0BA; font-weight: 400; }
   margin-bottom: 16px;
 }
 
-.ref-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+.ref-grid { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .ref-pill {
   display: inline-flex;
@@ -282,7 +252,6 @@ textarea::placeholder { color: #C5C0BA; font-weight: 400; }
 .ref-pill .arr { color: var(--border); font-size: 0.7rem; }
 .ref-pill .rz { color: var(--purple); }
 
-/* FOOTER */
 footer {
   background: var(--ink);
   padding: 32px 40px;
@@ -299,10 +268,7 @@ footer {
   text-decoration: none;
 }
 
-.footer-note {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.35);
-}
+.footer-note { font-size: 0.85rem; color: rgba(255,255,255,0.35); }
 
 @media (max-width: 700px) {
   .translator-main { grid-template-columns: 1fr; }
@@ -314,9 +280,9 @@ footer {
 <body>
 
 <nav>
-  <a class="nav-logo" href="/index.html">Zestfestian</a>
+  <a class="nav-logo" href="/">Zestfestian</a>
   <div class="nav-links">
-    <a href="/index.html">← Home</a>
+    <a href="/">← Home</a>
   </div>
 </nav>
 
@@ -356,7 +322,7 @@ footer {
 </div>
 
 <footer>
-  <a class="footer-logo" href="index.html">Zestfestian</a>
+  <a class="footer-logo" href="/">Zestfestian</a>
   <span class="footer-note">A language invented by 3 kids · 2026</span>
 </footer>
 
