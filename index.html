@@ -4,233 +4,555 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zestfestian</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Archivo+Black&display=swap" rel="stylesheet">
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+:root {
+  --bg: #FFFBF5;
+  --ink: #1A1A1A;
+  --purple: #5B3FD9;
+  --purple-light: #EDE8FF;
+  --yellow: #FFD84D;
+  --green: #2DC98A;
+  --green-light: #D6F7EC;
+  --pink: #FF6B9D;
+  --pink-light: #FFE8F2;
+  --border: #E2DDD6;
+  --muted: #6B6560;
 }
 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  background-color: #0E0E1A;
-  color: #ffffff;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  font-size: 17px;
   line-height: 1.6;
 }
 
-/* HEADER */
-header {
-  background: linear-gradient(90deg, #6A0DAD, #3A0CA3);
-  color: #fff;
-  padding: 25px 0;
-  text-align: center;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-}
-
-header h1 {
-  font-size: 2rem;
-  letter-spacing: 2px;
-}
-
+/* NAV */
 nav {
-  margin-top: 10px;
+  background: var(--purple);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-nav a {
-  color: #D5B8FF;
-  margin: 0 18px;
+.nav-logo {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.3rem;
+  color: #fff;
   text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s;
+  letter-spacing: 0.5px;
 }
 
-nav a:hover {
-  color: #FFFFFF;
+.nav-links { display: flex; gap: 8px; }
+
+.nav-links a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
 }
+
+.nav-links a:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.nav-links a.cta {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.nav-links a.cta:hover { background: #FFC800; }
 
 /* HERO */
 .hero {
-  background: linear-gradient(135deg, #3A0CA3, #7209B7);
-  padding: 100px 20px;
+  background: var(--purple);
+  padding: 80px 40px 72px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 40px;
+  background: var(--bg);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+.hero-tag {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 28px;
 }
 
 .hero h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  text-shadow: 0 0 10px rgba(255,255,255,0.3);
-}
-
-.hero p, .hero h3 {
-  color: #D0C4FF;
-  margin-bottom: 8px;
-  font-size: 1rem;
-}
-
-/* SECTION */
-.section {
-  padding: 60px 20px;
-  text-align: center;
-  background: #1C1C2A;
-}
-
-.section:nth-of-type(even) {
-  background: #23233A;
-}
-
-.section h2 {
-  color: #A884FF;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  color: #fff;
+  line-height: 1;
   margin-bottom: 20px;
-  font-size: 1.8rem;
 }
 
-.section p {
-  color: #E3DAFF;
-  max-width: 750px;
-  margin: 10px auto;
-  line-height: 1.8;
-}
-
-/* FILLER (divider line) */
-.filler {
-  height: 4px;
-  background: linear-gradient(90deg, #7209B7, #4361EE, #7209B7);
-  border: none;
-}
-
-/* WORD BOX */
-#word-of-the-day {
-  background: linear-gradient(135deg, #480CA8, #560BAD);
-}
-
-.word-box {
-  background: #2E1E60;
-  border: 2px solid #9D4EDD;
-  border-radius: 12px;
-  padding: 25px 40px;
-  margin-top: 25px;
-  display: inline-block;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(157,78,221,0.4);
-}
-
-.word-box p {
-  color: #FFF;
-  font-size: 1.1rem;
-}
-
-#zestfestian-word {
-  color: #B5F5FF !important;
-  font-weight: 600;
+.hero-sub {
   font-size: 1.2rem;
+  color: rgba(255,255,255,0.8);
+  max-width: 500px;
+  margin: 0 auto 40px;
+}
+
+.hero-zest {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 12px;
+  padding: 16px 32px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  color: var(--yellow);
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--yellow);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1rem;
+  padding: 16px 32px;
+  border-radius: 12px;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.hero-cta:hover { background: #FFC800; transform: translateY(-2px); }
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-bottom: 3px solid var(--border);
+}
+
+.stat {
+  padding: 40px 20px;
+  text-align: center;
+  border-right: 3px solid var(--border);
+}
+
+.stat:last-child { border-right: none; }
+
+.stat-num {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 3.5rem;
+  color: var(--purple);
+  line-height: 1;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+/* SECTION BASE */
+section {
+  padding: 72px 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+section.full-bleed {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.section-body {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.75;
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.about-card {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+}
+
+.about-card-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.about-card h3 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+.about-card p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ALPHABET */
+.alpha-wrap {
+  background: var(--purple-light);
+  padding: 72px 40px;
+}
+
+.alpha-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.alpha-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.alpha-cell {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 8px;
+  text-align: center;
+  transition: border-color 0.15s, transform 0.15s;
+  cursor: default;
+}
+
+.alpha-cell:hover {
+  border-color: var(--purple);
+  transform: translateY(-2px);
+}
+
+.alpha-eng {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.alpha-zest {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.3rem;
+  color: var(--purple);
+  line-height: 1;
+}
+
+/* WORD OF DAY */
+.word-wrap {
+  background: var(--green-light);
+  border-top: 3px solid var(--green);
+  border-bottom: 3px solid var(--green);
+  padding: 72px 40px;
+}
+
+.word-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.word-card {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  text-align: center;
+}
+
+.word-tag {
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+
+.word-english {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 2.5rem;
+  line-height: 1;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+
+.word-zest {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--purple);
+  word-break: break-all;
+  margin-bottom: 28px;
+  min-height: 2rem;
+}
+
+.btn-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.btn-refresh:hover { background: #25B07A; transform: translateY(-1px); }
+
+/* HOW TO */
+.howto-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+
+.step-num {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 2rem;
+  color: var(--purple-light);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 48px;
+  text-align: center;
+  color: var(--purple);
+  opacity: 0.3;
+}
+
+.step-content h3 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.step-content p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.step-content code {
+  display: inline-block;
+  background: var(--purple-light);
+  color: var(--purple);
+  font-family: monospace;
+  font-size: 0.9em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 700;
 }
 
 /* FOOTER */
 footer {
-  background-color: #111;
-  color: #bbb;
-  padding: 25px 0;
+  background: var(--ink);
+  color: rgba(255,255,255,0.7);
+  padding: 48px 40px;
   text-align: center;
-  font-size: 0.9rem;
-  border-top: 2px solid #3A0CA3;
 }
 
-footer p:last-child {
-  color: #888;
-  margin-top: 5px;
+.footer-logo {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.footer-zest {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 6px;
+}
+
+.footer-credit {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.3);
+}
+
+@media (max-width: 700px) {
+  .about-grid, .word-inner { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; }
+  .stat { border-right: none; border-bottom: 3px solid var(--border); }
+  .stat:last-child { border-bottom: none; }
+  nav { padding: 0 20px; }
+  .hero, section, .alpha-wrap, .word-wrap { padding-left: 20px; padding-right: 20px; }
 }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>S''leT'eleT't'lilaE'</h1>
-  <nav>
+<nav>
+  <a class="nav-logo" href="#">Zestfestian</a>
+  <div class="nav-links">
     <a href="#">Home</a>
-    <a href="/translator">Translator</a>
-  </nav>
-</header>
+    <a href="translator.html" class="cta">Translator →</a>
+  </div>
+</nav>
 
-<hr class="filler">
-  
-<section class="hero">
-  <h1>S''leT't'eleT't'lilaE' FlaE'SlulaSle</h1>
-  <p>(Zestfestian Language)</p>
-  <h3>7 tliET' zlafle lue' z'lit's t'sliT' FlaE'SlulaSle</h3>
-  <p>(7 Kids Came Up With This Language)</p>
-</section>
+<div class="hero">
+  <div class="hero-tag">zesty</div>
+  <h1>Zestfestian</h1>
+  <p class="hero-sub">made up language go brr</p>
+  <div class="hero-zest">S''leT't'eleT't'lilaE' FlaE'SlulaSle</div>
+  <a class="hero-cta" href="translator.html">Try the Translator →</a>
+</div>
 
-<hr class="filler">
 
-<section class="section">
-  <h2>About Zestfestian</h2>
-  <p>Zestfestian is a language made by 7 kids from South-East England. It's not meant to be spoken, but actually meant to be typed. Below is the basic info you'll need to write in Zestfestian.</p>
-  <p>The Translator is available using the menu at the top of our website.</p>
-</section>
 
-<hr class="filler">
-
-<section class="section" id="word-of-the-day">
-  <h2>Random Word (For You)</h2>
-  <div class="word-box">
-    <p id="english-word">Loading...</p>
-    <p id="zestfestian-word"></p>
+<section>
+  <h2 class="section-title">What is Zestfestian?</h2>
+  <p class="section-body">Zestfestian is a constructed language created by 2 kids from South-East England. Every English letter maps to a Zestfestian letter. Learn the alphabet and you can write anything.... as long as you can remember it all lol</p>
+  <div class="about-grid">
+    <div class="about-card">
+      
+      <h3>made for typing</h3>
+      <p>We built the language to not be spoken, that doesnt mean you cant try, although you'll look like a right twit while trying to</p>
+    </div>
+    <div class="about-card">
+      <h3>Its so hard</h3>
+      <p>Even I cant remember it from memory, I have to use the translator.</p>
+    </div>
   </div>
 </section>
 
-<script>
-const consonantMap = {
-  "B":"Z","C":"z","D":"E","F":"e","G":"S","H":"s",
-  "J":"T","K":"t","L":"F","M":"f","N":"E'","P":"e'",
-  "Q":"S'","R":"s'","S":"T'","T":"t'","V":"Z'","W":"z'",
-  "X":"E''","Y":"e''","Z":"S''"
-};
-const vowels = {"A":"la","E":"le","I":"li","O":"lo","U":"lu"};
+<div class="alpha-wrap full-bleed">
+  <div class="alpha-inner">
+    <h2 class="section-title">All 26 Letters</h2>
+    <p class="section-body">Vowels get an <strong>L</strong> prefix, and consonants shift to new symbols.</p>
+    <div class="alpha-grid" id="alphaGrid"></div>
+  </div>
+</div>
 
-function englishToZestfestian(text){
-  let result = "";
-  for(const char of text){
-    const upper = char.toUpperCase();
-    if(upper in vowels) result += vowels[upper];
-    else if(upper in consonantMap) result += consonantMap[upper];
-    else result += char;
-  }
-  return result;
-}
 
-async function loadWordOfTheDay(){
-  try {
-    const res = await fetch("https://random-word-api.herokuapp.com/word");
-    const data = await res.json();
-    const word = data[0];
-    const zestfestianWord = englishToZestfestian(word);
-    document.getElementById("english-word").textContent = `English: ${word}`;
-    document.getElementById("zestfestian-word").textContent = `Zestfestian: ${zestfestianWord}`;
-  } catch (err) {
-    document.getElementById("english-word").textContent = "Error fetching word.";
-    console.error(err);
-  }
-}
 
-loadWordOfTheDay();
-</script>
-
-<hr class="filler">
-
-<section class="section">
-  <h2>How do you speak Zestfestian?</h2>
-  <p>Zestfestian is a language that’s alphabet is made up of ZzEeSsTtFfE’e’S’s’T’t’Z’z’E’’e’’S’’ as the consonants and the vowels being L and then the corresponding vowel (e.g La, Lo).</p>
-  <p>This means the alphabet is:</p>
-  <p>la, Z, z, E, le, e, S, s, li, T, t, F, f. E’, lo, e’, S’, s’, T’, t’, lu, Z’, z’, E’’, e’’, S’’.</p>
-  <p>All letters of the alphabet correspond to their English counterpart in the Latin alphabet.</p>
+<section>
+  <h2 class="section-title">Three things to know</h2>
+  <div class="howto-steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Vowels get an L in front</h3>
+        <p>A becomes <code>la</code>, E becomes <code>le</code>, I becomes <code>li</code>, O becomes <code>lo</code>, U becomes <code>lu</code>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Consonants shift to new letters</h3>
+        <p>Each consonant maps to a new character. For example, B → <code>Z</code>, S → <code>T'</code>, or N → <code>E'</code>. Apostrophes are a proper part of the alphabet. In fact, all of the consonants put together become "Zest Fest" and the reason the apostophies are there is because there was not enough letters for just zest fest so we had to improvise :)</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Use the translator for anything</h3>
+        <p>You don't need to memorise the whole alphabet. The translator converts English to Zestfestian and back, and even we use it because we can't remember it all</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer> 
-  <p>2025 S''leT't'eleT't' Ss'lolue' zslat'. z'leZT'lit'le zloEleE Ze'' loE'le loe t'sle 7 tliET'.</p> 
-  <p>2025 Zest Fest Group Chat. Coded by One of the 7 Kids.</p> 
-</footer> 
-  
-</body> 
-  
+<footer>
+  <div class="footer-logo">Zestfestian</div>
+  <p class="footer-zest">2026 S''leT't'eleT't'lilaE' tliET'.</p>
+  <p class="footer-credit">Coded by one of the 2 kids.</p>
+</footer>
+
+<script>
+const consonantMap = {"B":"Z","C":"z","D":"E","F":"e","G":"S","H":"s","J":"T","K":"t","L":"F","M":"f","N":"E'","P":"e'","Q":"S'","R":"s'","S":"T'","T":"t'","V":"Z'","W":"z'","X":"E''","Y":"e''","Z":"S''"};
+const vowels = {"A":"la","E":"le","I":"li","O":"lo","U":"lu"};
+
+const fullAlpha = [{eng:"A",zest:"la"},{eng:"B",zest:"Z"},{eng:"C",zest:"z"},{eng:"D",zest:"E"},{eng:"E",zest:"le"},{eng:"F",zest:"e"},{eng:"G",zest:"S"},{eng:"H",zest:"s"},{eng:"I",zest:"li"},{eng:"J",zest:"T"},{eng:"K",zest:"t"},{eng:"L",zest:"F"},{eng:"M",zest:"f"},{eng:"N",zest:"E'"},{eng:"O",zest:"lo"},{eng:"P",zest:"e'"},{eng:"Q",zest:"S'"},{eng:"R",zest:"s'"},{eng:"S",zest:"T'"},{eng:"T",zest:"t'"},{eng:"U",zest:"lu"},{eng:"V",zest:"Z'"},{eng:"W",zest:"z'"},{eng:"X",zest:"E''"},{eng:"Y",zest:"e''"},{eng:"Z",zest:"S''"}];
+
+const grid = document.getElementById('alphaGrid');
+fullAlpha.forEach(({eng,zest}) => {
+  const c = document.createElement('div');
+  c.className = 'alpha-cell';
+  c.innerHTML = `<div class="alpha-eng">${eng}</div><div class="alpha-zest">${zest}</div>`;
+  grid.appendChild(c);
+});
+
+
+</script>
+</body>
 </html>

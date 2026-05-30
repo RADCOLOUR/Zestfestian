@@ -1,208 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zestfestian Translator</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Translator — Zestfestian</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Archivo+Black&display=swap" rel="stylesheet">
 <style>
+:root {
+  --bg: #FFFBF5;
+  --ink: #1A1A1A;
+  --purple: #5B3FD9;
+  --purple-light: #EDE8FF;
+  --yellow: #FFD84D;
+  --green: #2DC98A;
+  --border: #E2DDD6;
+  --muted: #6B6560;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-    font-family: 'Poppins', sans-serif;
-    background: #38264f;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 36px 20px;
-    margin: 0;
-    min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  font-size: 17px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-h1 {
-    color: #ffffff;
-    margin-bottom: 24px;
-    font-size: 2rem;
-    text-align: center;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+nav {
+  background: var(--purple);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  flex-shrink: 0;
 }
 
-.controls {
-    width: 100%;
-    max-width: 720px;
-    background: linear-gradient(135deg, #6E5ED1, #A47BFF);
-    padding: 24px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.nav-logo {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.3rem;
+  color: #fff;
+  text-decoration: none;
 }
 
-label {
-    font-weight: 600;
-    display: block;
-    margin-bottom: 8px;
-    color: #fff;
+.nav-links a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.15s;
 }
 
-select, textarea, button {
-    width: 100%;
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    margin-top: 10px;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+.nav-links a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+/* PAGE HEADER */
+.page-header {
+  background: var(--purple);
+  padding: 48px 40px 56px;
+  color: #fff;
 }
+
+.page-header p {
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 10px;
+}
+
+.page-header h1 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+/* DIRECTION TABS */
+.dir-tabs {
+  display: flex;
+  border-bottom: 3px solid var(--border);
+  background: #fff;
+}
+
+.dir-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 18px 24px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  transition: color 0.15s, border-color 0.15s;
+  text-align: left;
+}
+
+.dir-tab.active {
+  color: var(--purple);
+  border-bottom-color: var(--purple);
+}
+
+.dir-tab:hover:not(.active) { color: var(--ink); }
+
+.dir-sep { width: 1px; background: var(--border); }
+
+/* TRANSLATOR MAIN */
+.translator-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+  min-height: 0;
+}
+
+.pane {
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pane-right {
+  background: var(--purple-light);
+  border-left: 3px solid var(--border);
+}
+
+.pane-label {
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.pane-right .pane-label { color: var(--purple); }
 
 textarea {
-    height: 140px;
-    resize: vertical;
-    background: #DCD0FF;
-    color: #031018;
-    font-weight: 500;
+  flex: 1;
+  min-height: 220px;
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.6;
+  padding: 16px;
+  resize: none;
+  outline: none;
+  transition: border-color 0.15s;
 }
 
-button {
-    background: #7A4CFF;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s;
+textarea:focus { border-color: var(--purple); }
+textarea::placeholder { color: #C5C0BA; font-weight: 400; }
+
+.output-box {
+  flex: 1;
+  min-height: 220px;
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--purple);
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
-button:hover {
-    background: #8E5AF2;
+.output-placeholder { color: #C5C0BA; font-weight: 400; }
+
+.pane-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-#copyBtn {
-    background: #B5A1FF;
-    color: #031018;
+.btn-primary {
+  background: var(--purple);
+  color: #fff;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 1rem;
+  padding: 13px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
 }
 
-#copyBtn:hover {
-    background: #D1BEFF;
+.btn-primary:hover { background: #4A32C2; transform: translateY(-1px); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--muted);
+  border: 2px solid var(--border);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 11px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
 }
 
-#output {
-    margin: 24px auto 0 auto;
-    width: 100%;
-    max-width: 720px;
-    background: #8E5AF2;
-    padding: 16px;
-    border-radius: 12px;
-    white-space: pre-wrap;
-    min-height: 48px;
-    color: #fff;
-    font-weight: 500;
-    text-align: center;
-    box-sizing: border-box;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+.btn-secondary:hover { border-color: var(--muted); color: var(--ink); }
+
+.char-hint {
+  font-size: 0.8rem;
+  color: #C5C0BA;
+  font-weight: 600;
+  margin-left: auto;
 }
 
-.row {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
+.btn-copy {
+  background: transparent;
+  color: var(--purple);
+  border: 2px solid var(--purple);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 11px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
 }
 
+.btn-copy:hover { background: var(--purple); color: #fff; }
+.btn-copy.copied { background: var(--green); border-color: var(--green); color: #fff; }
+
+/* REFERENCE */
+.reference {
+  border-top: 3px solid var(--border);
+  padding: 36px 40px;
+  background: #fff;
+}
+
+.ref-label {
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.ref-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ref-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: border-color 0.12s;
+  cursor: default;
+}
+
+.ref-pill:hover { border-color: var(--purple); }
+.ref-pill .re { color: var(--muted); }
+.ref-pill .arr { color: var(--border); font-size: 0.7rem; }
+.ref-pill .rz { color: var(--purple); }
+
+/* FOOTER */
 footer {
-    text-align: center;
-    margin-top: auto;
-    padding: 24px 0 0;
-    color: #fff;
-    font-size: 0.9rem;
-    background-color: #333;
-    width: 100%;
+  background: var(--ink);
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.footer-logo {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.1rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-note {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.35);
+}
+
+@media (max-width: 700px) {
+  .translator-main { grid-template-columns: 1fr; }
+  .pane-right { border-left: none; border-top: 3px solid var(--border); }
+  nav, .page-header, .pane, .reference, footer { padding-left: 20px; padding-right: 20px; }
 }
 </style>
 </head>
 <body>
-  <h1>Zestfestian Translator</h1>
 
-  <div class="controls">
-    <label for="direction">Direction:</label>
-    <select id="direction">
-      <option value="toEnglish">Zestfestian → English</option>
-      <option value="toCustom">English → Zestfestian</option>
-    </select>
+<nav>
+  <a class="nav-logo" href="index.html">Zestfestian</a>
+  <div class="nav-links">
+    <a href="index.html">← Home</a>
+  </div>
+</nav>
 
-    <textarea id="inputText" placeholder="Type text here..."></textarea>
+<div class="page-header">
+  <p>Translation Tool</p>
+  <h1>Translator</h1>
+</div>
 
-    <div class="row">
-      <button id="convertBtn">Convert</button>
-      <button id="copyBtn">Copy Output</button>
+<div class="dir-tabs">
+  <button class="dir-tab active" id="tabEZ" onclick="setDir('toZest')">English → Zestfestian</button>
+  <div class="dir-sep"></div>
+  <button class="dir-tab" id="tabZE" onclick="setDir('toEnglish')">Zestfestian → English</button>
+</div>
+
+<div class="translator-main">
+  <div class="pane pane-left">
+    <p class="pane-label" id="inputLabel">English input</p>
+    <textarea id="inputText" placeholder="Type or paste text here…"></textarea>
+    <div class="pane-actions">
+      <button class="btn-primary" onclick="convert()">Convert →</button>
+      <button class="btn-secondary" onclick="clearAll()">Clear</button>
+      <span class="char-hint" id="charHint">0 chars · Ctrl+Enter to convert</span>
     </div>
   </div>
+  <div class="pane pane-right">
+    <p class="pane-label" id="outputLabel">Zestfestian output</p>
+    <div class="output-box" id="outputBox"><span class="output-placeholder">Your translation will appear here…</span></div>
+    <div class="pane-actions">
+      <button class="btn-copy" id="copyBtn" onclick="copyOutput()">Copy Output</button>
+    </div>
+  </div>
+</div>
 
-  <div id="output"></div>
+<div class="reference">
+  <p class="ref-label">Quick reference — full alphabet</p>
+  <div class="ref-grid" id="refGrid"></div>
+</div>
 
-
+<footer>
+  <a class="footer-logo" href="index.html">Zestfestian</a>
+  <span class="footer-note">A language invented by 2 kids · 2026</span>
+</footer>
 
 <script>
-// Consonant mapping
-const consonantMap = {
-  "B":"Z","C":"z","D":"E","F":"e","G":"S","H":"s",
-  "J":"T","K":"t","L":"F","M":"f","N":"E'","P":"e'",
-  "Q":"S'","R":"s'","S":"T'","T":"t'","V":"Z'","W":"z'",
-  "X":"E''","Y":"e''","Z":"S''"
-};
+const CM = {"B":"Z","C":"z","D":"E","F":"e","G":"S","H":"s","J":"T","K":"t","L":"F","M":"f","N":"E'","P":"e'","Q":"S'","R":"s'","S":"T'","T":"t'","V":"Z'","W":"z'","X":"E''","Y":"e''","Z":"S''"};
+const V = {"A":"la","E":"le","I":"li","O":"lo","U":"lu"};
+const CR = Object.fromEntries(Object.entries(CM).map(([k,v])=>[v,k]));
+const VR = Object.fromEntries(Object.entries(V).map(([k,v])=>[v.toLowerCase(),k]));
+const ALPHA = [{e:"A",z:"la"},{e:"B",z:"Z"},{e:"C",z:"z"},{e:"D",z:"E"},{e:"E",z:"le"},{e:"F",z:"e"},{e:"G",z:"S"},{e:"H",z:"s"},{e:"I",z:"li"},{e:"J",z:"T"},{e:"K",z:"t"},{e:"L",z:"F"},{e:"M",z:"f"},{e:"N",z:"E'"},{e:"O",z:"lo"},{e:"P",z:"e'"},{e:"Q",z:"S'"},{e:"R",z:"s'"},{e:"S",z:"T'"},{e:"T",z:"t'"},{e:"U",z:"lu"},{e:"V",z:"Z'"},{e:"W",z:"z'"},{e:"X",z:"E''"},{e:"Y",z:"e''"},{e:"Z",z:"S''"}];
 
-const vowels = {"A":"la","E":"le","I":"li","O":"lo","U":"lu"};
+let dir = 'toZest';
 
-const consonantReverse = Object.fromEntries(Object.entries(consonantMap).map(([k,v])=>[v,k]));
-const vowelReverse = Object.fromEntries(Object.entries(vowels).map(([k,v])=>[v.toLowerCase(),k]));
+function toZest(t){let r="";for(const c of t){const u=c.toUpperCase();if(u in V)r+=V[u];else if(u in CM)r+=CM[u];else r+=c;}return r;}
+function toEnglish(t){let r="",i=0;while(i<t.length){let m=false;for(let l=3;l>0;l--){const tk=t.slice(i,i+l);if(l===2&&tk[0]==='l'&&'aeiou'.includes(tk[1])){r+=VR[tk]||tk;i+=2;m=true;break;}if(tk in CR){r+=CR[tk];i+=l;m=true;break;}}if(!m){r+=t[i];i++;}}return r;}
 
-function englishToZestfestian(text){
-  let result = "";
-  for(const char of text){
-    const upper = char.toUpperCase();
-    if(upper in vowels) result += vowels[upper];
-    else if(upper in consonantMap) result += consonantMap[upper];
-    else result += char;
-  }
-  return result;
+function setDir(d){
+  dir=d;
+  document.getElementById('tabEZ').classList.toggle('active',d==='toZest');
+  document.getElementById('tabZE').classList.toggle('active',d==='toEnglish');
+  document.getElementById('inputLabel').textContent=d==='toZest'?'English input':'Zestfestian input';
+  document.getElementById('outputLabel').textContent=d==='toZest'?'Zestfestian output':'English output';
+  document.getElementById('inputText').placeholder=d==='toZest'?'Type or paste text here…':'Paste Zestfestian text here…';
+  clearAll();
 }
 
-function zestfestianToEnglish(text){
-  let result = "";
-  let i = 0;
-  while(i < text.length){
-    let matched = false;
-    for(let len=3; len>0; len--){
-      const token = text.slice(i,i+len);
-      if(token.length===2 && token[0]==='l' && 'aeiou'.includes(token[1])){
-        result += vowelReverse[token];
-        i += 2;
-        matched = true;
-        break;
-      }
-      if(token in consonantReverse){
-        result += consonantReverse[token];
-        i += len;
-        matched = true;
-        break;
-      }
-    }
-    if(!matched){
-      result += text[i];
-      i++;
-    }
-  }
-  return result;
+function convert(){
+  const txt=document.getElementById('inputText').value;
+  if(!txt.trim()) return;
+  const out=dir==='toZest'?toZest(txt):toEnglish(txt);
+  document.getElementById('outputBox').textContent=out;
 }
 
-document.getElementById("convertBtn").addEventListener("click", ()=>{
-  const dir = document.getElementById("direction").value;
-  const input = document.getElementById("inputText").value;
-  let output = "";
-  if(dir==='toCustom') output = englishToZestfestian(input);
-  else output = zestfestianToEnglish(input);
-  document.getElementById("output").textContent = output;
+function clearAll(){
+  document.getElementById('inputText').value='';
+  document.getElementById('outputBox').innerHTML='<span class="output-placeholder">Your translation will appear here…</span>';
+  document.getElementById('charHint').textContent='0 chars · Ctrl+Enter to convert';
+  const cb=document.getElementById('copyBtn');
+  cb.textContent='Copy Output'; cb.classList.remove('copied');
+}
+
+function copyOutput(){
+  const txt=document.getElementById('outputBox').textContent;
+  if(txt==='Your translation will appear here…') return;
+  navigator.clipboard.writeText(txt).then(()=>{
+    const cb=document.getElementById('copyBtn');
+    cb.textContent='✓ Copied!'; cb.classList.add('copied');
+    setTimeout(()=>{cb.textContent='Copy Output';cb.classList.remove('copied');},2000);
+  });
+}
+
+document.getElementById('inputText').addEventListener('input',function(){
+  document.getElementById('charHint').textContent=this.value.length+' chars · Ctrl+Enter to convert';
 });
+document.getElementById('inputText').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.ctrlKey)convert();});
 
-document.getElementById("copyBtn").addEventListener("click", ()=>{
-  navigator.clipboard.writeText(document.getElementById("output").textContent);
+const rg=document.getElementById('refGrid');
+ALPHA.forEach(({e,z})=>{
+  const p=document.createElement('div');
+  p.className='ref-pill';
+  p.innerHTML=`<span class="re">${e}</span><span class="arr">→</span><span class="rz">${z}</span>`;
+  rg.appendChild(p);
 });
 </script>
 </body>
 </html>
-
